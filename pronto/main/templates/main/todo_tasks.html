@@ -1,0 +1,30 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    Tasks for {{ todo.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Tasks for {{ todo.name }}</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for task in tasks %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.title }}</h5>
+                    <p class="card-text">{{ task.description }}</p>
+                    <a href="{% url 'detail' task.id %}" class="btn btn-primary">View Details</a>
+                    <a href="{% url 'update-task' task.id %}" class="btn btn-outline-warning">update task</a>
+                    <a href="{% url 'delete-task' task.id %}" class="btn btn-outline-danger">delete task</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>No tasks found for this TODO.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

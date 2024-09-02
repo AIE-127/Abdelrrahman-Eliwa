@@ -1,0 +1,30 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    Task Details: {{ task.title }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ task.title }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Task Details</h5>
+            <p class="card-text"><strong>Description:</strong> {{ task.description }}</p>
+            <p class="card-text"><strong>Status:</strong>
+                {% if task.status == "PENDING" %}
+                <span class="badge text-bg-danger">Pending</span>
+                {% elif task.status == "IN PROGRESS" %}
+                <span class="badge text-bg-warning">In Progress</span>
+                {% else %}
+                <span class="badge text-bg-success">Completed</span>
+                {% endif %}
+            </p>
+            <p class="card-text"><strong>Due Date:</strong> {{ task.due_date }}</p>
+            <p class="card-text"><strong>Priority:</strong> {{ task.priority }}</p>
+            <p class="card-text"><strong>TODO:</strong> {{ task.TODO.name }}</p>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
